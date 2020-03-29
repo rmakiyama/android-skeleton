@@ -1,5 +1,7 @@
 package com.rmakiyama.skeleton.ui
 
+import com.rmakiyama.skeleton.ui.detail.DetailFragment
+import com.rmakiyama.skeleton.ui.home.HomeFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -7,5 +9,11 @@ import dagger.android.ContributesAndroidInjector
 abstract class MainActivityModule {
 
     @ContributesAndroidInjector
-    internal abstract fun contributeMainActivity(): MainActivity
+    abstract fun contributeMainActivity(): MainActivity
+
+    @ContributesAndroidInjector
+    abstract fun contributeHomeFragment(): HomeFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeDetailFragment(): DetailFragment
 }

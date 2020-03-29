@@ -3,19 +3,19 @@ package com.rmakiyama.skeleton.ui
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.snackbar.Snackbar
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
+import androidx.navigation.Navigation
 import com.rmakiyama.skeleton.R
 import com.rmakiyama.skeleton.databinding.ActivityMainBinding
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasAndroidInjector
-import javax.inject.Inject
+import dagger.android.support.DaggerAppCompatActivity
 
-class MainActivity : AppCompatActivity(), HasAndroidInjector {
+class MainActivity : DaggerAppCompatActivity() {
 
-    @Inject lateinit var androidInjector: DispatchingAndroidInjector<Any>
     private lateinit var binding: ActivityMainBinding
+    private val navController: NavController by lazy {
+        Navigation.findNavController(this, R.id.nav_host_fragment)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,9 +23,12 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            onDestinationChange(destination)
+        }
+
+        binding.fab.setOnClickListener {
+            navController.navigate(R.id.action_home_to_detail)
         }
     }
 
@@ -41,5 +44,10 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
         }
     }
 
-    override fun androidInjector(): AndroidInjector<Any> = androidInjector
+    private fun onDestinationChange(destination: NavDestination) {
+        when (destination.id) {
+            R.id.home -> binding.fab.show()
+            else -> binding.fab.hide()
+        }
+    }
 }
