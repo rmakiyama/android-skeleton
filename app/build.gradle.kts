@@ -1,18 +1,22 @@
+import dependencies.Dep
+import dependencies.Versions
+
 plugins {
     id("com.android.application")
-    id("kotlin-android")
+    kotlin("android")
+    kotlin("kapt")
     id("kotlin-android-extensions")
 }
 
 android {
-    compileSdkVersion(29)
+    compileSdkVersion(Versions.androidCompileSdkVersion)
 
     defaultConfig {
         applicationId = "com.rmakiyama.skeleton"
-        minSdkVersion(21)
-        targetSdkVersion(29)
-        versionCode = 1
-        versionName = "1.0"
+        minSdkVersion(Versions.androidMinSdkVersion)
+        targetSdkVersion(Versions.androidTargetSdkVersion)
+        versionCode = Versions.androidVersionCode
+        versionName = Versions.androidVersionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -37,14 +41,43 @@ android {
 
 val kotlinVersion: String by rootProject.extra
 dependencies {
-    implementation(fileTree("dir" to "libs", "include" to listOf("*.jar")))
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
-    implementation("androidx.core:core-ktx:1.2.0")
-    implementation("androidx.appcompat:appcompat:1.1.0")
-    implementation("com.google.android.material:material:1.1.0")
-    implementation("androidx.constraintlayout:constraintlayout:1.1.3")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.2.1")
-    implementation("androidx.navigation:navigation-ui-ktx:2.2.1")
+    // kotlin
+    implementation(Dep.Kotlin.stdlibJvm)
+    implementation(Dep.Kotlin.coroutines)
+    implementation(Dep.Kotlin.androidCoroutines)
+
+    // androidX
+    implementation(Dep.AndroidX.appCompat)
+    implementation(Dep.AndroidX.coreKtx)
+    implementation(Dep.AndroidX.constraint)
+    implementation(Dep.AndroidX.recyclerView)
+    implementation(Dep.AndroidX.activityKtx)
+    implementation(Dep.AndroidX.fragmentKtx)
+    implementation(Dep.AndroidX.lifecycleLiveData)
+    implementation(Dep.AndroidX.liveDataCoreKtx)
+    implementation(Dep.AndroidX.liveDataKtx)
+    implementation(Dep.AndroidX.viewModelKtx)
+    implementation(Dep.AndroidX.Navigation.runtimeKtx)
+    implementation(Dep.AndroidX.Navigation.fragmentKtx)
+    implementation(Dep.AndroidX.Navigation.uiKtx)
+
+    // dagger
+    implementation(Dep.Dagger.core)
+    implementation(Dep.Dagger.androidSupport)
+    kapt(Dep.Dagger.compiler)
+    kapt(Dep.Dagger.androidProcessor)
+    compileOnly(Dep.Dagger.assistedInjectAnnotations)
+    kapt(Dep.Dagger.assistedInjectProcessor)
+
+    // ui
+    implementation(Dep.Ui.material)
+    implementation(Dep.Ui.groupie)
+    implementation(Dep.Ui.coil)
+    implementation(Dep.Ui.insetter)
+
+    // util
+    implementation(Dep.Timber.timber)
+
     testImplementation("junit:junit:4.12")
     androidTestImplementation("androidx.test.ext:junit:1.1.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.2.0")
