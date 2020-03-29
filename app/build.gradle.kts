@@ -5,7 +5,6 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
-    id("kotlin-android-extensions")
 }
 
 android {
@@ -37,6 +36,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures.viewBinding = true
 }
 
 val kotlinVersion: String by rootProject.extra
