@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Base.Skeleton" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/skeleton_purple_500</item>
+        <item name="colorPrimaryVariant">@color/skeleton_purple_700</item>
+        <item name="colorSecondary">@color/skeleton_teal_200</item>
+        <item name="colorSecondaryVariant">@color/skeleton_teal_700</item>
+    </style>
+
+    <style name="Skeleton" parent="Base.Skeleton" />
+</resources>
