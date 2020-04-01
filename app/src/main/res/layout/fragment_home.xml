@@ -7,12 +7,13 @@
     tools:context=".ui.home.HomeFragment">
 
     <TextView
-        android:id="@+id/textview_first"
+        android:id="@+id/count_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="home"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="20:20" />
 </androidx.constraintlayout.widget.ConstraintLayout>

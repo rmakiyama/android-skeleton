@@ -8,6 +8,7 @@
     <fragment
         android:id="@+id/home"
         android:name="com.rmakiyama.skeleton.ui.home.HomeFragment"
+        android:label="home"
         tools:layout="@layout/fragment_home">
 
         <action
@@ -18,5 +19,11 @@
     <fragment
         android:id="@+id/detail"
         android:name="com.rmakiyama.skeleton.ui.detail.DetailFragment"
-        tools:layout="@layout/fragment_detail" />
+        android:label="Detail"
+        tools:layout="@layout/fragment_detail">
+
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
 </navigation>

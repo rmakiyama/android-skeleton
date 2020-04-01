@@ -7,12 +7,13 @@
     tools:context=".ui.detail.DetailFragment">
 
     <TextView
-        android:id="@+id/textview_second"
+        android:id="@+id/uuid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="detail"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="uuid" />
 </androidx.constraintlayout.widget.ConstraintLayout>
