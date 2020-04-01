@@ -1,16 +1,25 @@
 package com.rmakiyama.skeleton.ui.home
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.map
+import androidx.lifecycle.viewModelScope
+import com.rmakiyama.skeleton.data.DummyRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
 import javax.inject.Inject
 
-class HomeViewModel @Inject constructor() : ViewModel() {
+class HomeViewModel @Inject constructor(
+    private val repository: DummyRepository
+) : ViewModel() {
 
     private val _timeMillis = MutableLiveData(0L)
     val time: LiveData<String> get() = _timeMillis.map { it.toTimeText() }
+    val dummies = repository.dummies().asLiveData()
 
     private var updateTime: Boolean = true
 

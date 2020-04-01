@@ -7,6 +7,7 @@ import com.rmakiyama.skeleton.R
 import com.rmakiyama.skeleton.core.ext.assistedViewModels
 import com.rmakiyama.skeleton.databinding.FragmentHomeBinding
 import dagger.android.support.DaggerFragment
+import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Provider
 
@@ -21,6 +22,7 @@ class HomeFragment : DaggerFragment(R.layout.fragment_home) {
 
         with(viewModel) {
             time.observe(viewLifecycleOwner, binding.countUp::setText)
+            dummies.observe(viewLifecycleOwner) { Timber.i("$it") }
         }
     }
 }

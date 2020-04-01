@@ -2,6 +2,7 @@ package com.rmakiyama.skeleton.di
 
 import android.app.Application
 import com.rmakiyama.skeleton.App
+import com.rmakiyama.skeleton.data.RepositoryModule
 import com.rmakiyama.skeleton.ui.MainActivityModule
 import dagger.BindsInstance
 import dagger.Component
@@ -14,7 +15,8 @@ import javax.inject.Singleton
     modules = [
         AppModule::class,
         AndroidInjectionModule::class,
-        MainActivityModule::class
+        MainActivityModule::class,
+        RepositoryModule::class
     ]
 )
 interface AppComponent : AndroidInjector<App> {
