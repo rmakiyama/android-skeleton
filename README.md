@@ -1,4 +1,4 @@
-# android-skeleton[work]
+# android-skeleton
 
 Skeleton for Android with MVVM
 
